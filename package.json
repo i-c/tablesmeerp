@@ -1,6 +1,6 @@
 {
   "name": "tablesmeerp",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A utility for processing random-generation tables.",
   "main": "index.js",
   "keywords": [
