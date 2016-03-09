@@ -1,6 +1,10 @@
 module.exports = function (grunt) {
   grunt.initConfig({
-    bump: {},
+    bump: {
+      options: {
+        pushTo: 'origin'
+      }
+    },
     jshint: {
       files: ['Gruntfile.js', 'index.js', 'bin/**/*.js']
     },
