@@ -147,6 +147,19 @@ module.exports = function (args) {
       if (expr.default) {
         return execute(expr.default);
       }
+    },
+
+    /**
+     * Return a random parsed expression from the expr's first value.
+     * @example
+     * {pick_one: [{expr}, {expr}, {expr}]}
+     * @param  {object} expr The pick_one j-expression
+     * @return {object}      The random value
+     */
+    pick_one: function (expr) {
+      var entries = firstVal(expr);
+      var randomEntry = chance.pickone(entries);
+      return execute(randomEntry);
     }
   };
 
