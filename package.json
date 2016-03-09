@@ -24,5 +24,11 @@
   "bugs": {
     "url": "https://github.com/i-c/tablesmeerp/issues"
   },
-  "homepage": "https://github.com/i-c/tablesmeerp"
+  "homepage": "https://github.com/i-c/tablesmeerp",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-bump": "^0.7.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-watch": "^0.6.1"
+  }
 }
