@@ -23,7 +23,7 @@ var options = cli.parseArgs();
 
 function readFile(filename, encoding, callback) {
   if (!options.file) {
-    console.error('No file to use')
+    console.error('No file to use');
     process.exit(2);
   } else {
     fs.readFile(filename, encoding, callback);
