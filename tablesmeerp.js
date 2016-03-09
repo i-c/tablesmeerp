@@ -114,10 +114,10 @@ module.exports = function (args) {
      * @return {object}      The results of the expressions, joined
      */
     join: function (expr) {
-      separator = expr.separator || " ";
-      subExprs = firstVal(expr);
+      var separator = expr.separator || " ";
+      var subExprs = firstVal(expr);
 
-      resultArray = [];
+      var resultArray = [];
       for (var i in subExprs) {
         resultArray.push(execute(subExprs[i]));
       }
