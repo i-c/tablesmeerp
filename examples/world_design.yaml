@@ -1,0 +1,93 @@
+generator: World Design
+entry_point: Random World
+tables:
+
+  - table: Random World
+    do:
+      join:
+        - text: "**World Type:**"
+        - save: world_type
+          do:
+            roll_on: World Type
+        - text: "\n\n"
+        - text: "**Atmospheric Mass:**"
+        - roll_on: Atmospheric Mass
+
+  - table: World Type
+    do:
+      switch:
+        - {roll_on: Hostile Worlds, case_start: 1, case_end: 7}
+        - {roll_on: Barren Worlds, case_start: 8, case_end: 13}
+        - {roll_on: Garden Worlds, case_start: 14, case_end: 18}
+      value:
+        roll: 3d6
+
+  - table: Hostile Worlds
+    do:
+      switch:
+        - {text: Standard (Cthonian), case_start: 3, case_end: 4}
+        - {text: Standard (Greenhouse), case_start: 5, case_end: 6}
+        - {text: Tiny (Sulfur), case_start: 7, case_end: 9}
+        - {text: Standard (Ammonia), case_start: 10, case_end: 12}
+        - {text: Large (Ammonia), case_start: 13, case_end: 14}
+        - {text: Large (Greenhouse), case_start: 15, case_end: 16}
+        - {text: Large (Chthonian), case_start: 17, case_end: 18}
+      value:
+        roll: 3d6
+
+  - table: Barren Worlds
+    do:
+      switch:
+        - {text: Small (Hadean), case: 3}
+        - {text: Small (Ice), case: 4}
+        - {text: Small (Rock), case_start: 5, case_end: 6}
+        - {text: Tiny (Rock), case_start: 7, case_end: 8}
+        - {text: Tiny (Ice), case_start: 9, case_end: 10}
+        - {text: Asteroid Belt, case_start: 11, case_end: 12}
+        - {text: Standard (Ocean), case_start: 13, case_end: 14}
+        - {text: Standard (Ice), case: 15}
+        - {text: Standard (Hadean), case: 16}
+        - {text: Large (Ocean), case: 17}
+        - {text: Large (Ice), case: 18}
+      value:
+        roll: 3d6
+
+  - table: Garden Worlds
+    do:
+      switch:
+        - {text: Standard (Garden), case_start: 3, case_end: 16}
+        - {text: Large (Garden), case_start: 17, case_end: 18}
+      value:
+        roll: 3d6
+
+  - table: Marginal Atmospheres
+    do:
+      switch:
+        - {text: Chlorine or Fluorine, case_start: 3, case_end: 4}
+        - {text: Sulfur Compounds, case_start: 5, case_end: 6}
+        - {text: Nitrogen Compounds, case: 7}
+        - {text: Organic Toxins, case_start: 8, case_end: 9}
+        - {text: Low Oxygen, case_start: 10, case_end: 11}
+        - {text: Pollutants, case_start: 12, case_end: 13}
+        - {text: High Carbon Dioxide, case: 14}
+        - {text: High Oxygen, case_start: 15, case_end: 16}
+        - {text: Inert Gases, case_start: 17, case_end: 18}
+      value:
+        roll: 3d6
+
+  - table: Atmospheric Mass
+    do:
+      switch:
+        - {text: 0, case: Asteroid Belt}
+        - {text: 0, case: Tiny (Ice)}
+        - {text: 0, case: Tiny (Rock)}
+        - {text: 0, case: Tiny (Sulfur)}
+        - {text: 0, case: Small (Hadean)}
+        - {text: 0, case: Small (Roll)}
+        - {text: 0, case: Standard (Hadean)}
+        - {text: 0, case: Standard (Cthonian)}
+        - {text: 0, case: Large (Cthonian)}
+      value:
+        use: world_type
+      default:
+        roll: 3d6/10
