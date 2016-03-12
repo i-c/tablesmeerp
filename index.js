@@ -105,7 +105,7 @@ module.exports = function (args) {
      * @return {object}      The results of the expressions, joined
      */
     join: function (expr) {
-      var separator = expr.separator || " ";
+      var separator = expr.separator !== undefined ? expr.separator : " ";
       var subExprs = firstVal(expr);
 
       var resultArray = [];
@@ -113,6 +113,24 @@ module.exports = function (args) {
         resultArray.push(execute(subExprs[i]));
       }
       return resultArray.join(separator);
+    },
+
+    /**
+     * Evaluate multiple j-expressions and add them together.
+     * @example
+     * {add: [{expr}, {expr}, {expr}]}
+     * @param  {object} expr The add j-expression
+     * @return {object}      The results of the expressions, added
+     */
+    add: function (expr) {
+      var subExprs = firstVal(expr);
+      var result = 0;
+
+      for (var i in subExprs) {
+        result += execute(subExprs[i]);
+      }
+
+      return result;
     },
 
     /**
