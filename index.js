@@ -35,16 +35,7 @@ module.exports = function (args) {
      * @return {object}      The result of the do statement.
      */
     table: function (expr) {
-      return ops.do(expr.do);
-    },
-
-    /**
-     * A do expression is basically just a placeholder for its subexpression.
-     * @param  {object} expr The do j-expression.
-     * @return {object}      The result of the subexpression.
-     */
-    do: function (expr) {
-      return execute(expr);
+      return execute(expr.do);
     },
 
     /**
@@ -55,7 +46,7 @@ module.exports = function (args) {
      * @return {object}      The returned result, if applicable
      */
     save: function (expr) {
-      var value = ops.do(expr.do);
+      var value = execute(expr.do);
       generatorVars[firstVal(expr)] = value;
 
       if (expr.return !== false) {
@@ -218,7 +209,7 @@ module.exports = function (args) {
     },
     run: function () {
       this.reset();
-      var results = ops.do(entryPointTable.do);
+      var results = execute(entryPointTable.do);
       return marked(results);
     }
   };
